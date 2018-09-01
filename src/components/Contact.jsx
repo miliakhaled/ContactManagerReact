@@ -31,7 +31,7 @@ export default class Constact extends Component {
         <h4>
           {name}
           <i className={this.formatArrow()} onClick={this.showInfo} />
-          <i className="fas fa-times-circle text-danger float-right" onClick={this.props.onDelete.bind(this, id)} />
+          <i className="fas fa-times-circle text-danger float-right" onClick={() => this.props.onDelete(id)} />
         </h4>
         {showContact ? (
           <ul className="list-group animation">
