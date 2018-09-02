@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import '../index.css';
-import { Consumer } from './Context';
+import { Consumer } from '../Context';
 
 export default class Constact extends Component {
   state = {
@@ -10,7 +10,6 @@ export default class Constact extends Component {
 
   static propTypes = {
     contact: PropTypes.object.isRequired,
-    onDelete: PropTypes.func.isRequired,
   };
 
   showInfo = () => {
