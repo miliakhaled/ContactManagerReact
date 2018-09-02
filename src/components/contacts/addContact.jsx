@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 import { Consumer } from '../Context';
 
 export default class addContact extends Component {
@@ -12,23 +13,19 @@ export default class addContact extends Component {
 
   onSubmit = (e, dispatch) => {
     e.preventDefault();
-    console.log('default');
-    let state = [...this.state];
-    state = {
-      type: 'ADD_CONTACT',
-      payload: state,
-    };
     // addContact(dispatch(state));
-    dispatch({ type: 'ADD_CONTACT', payload: this.state });
-  };
-
-  addContact = dispatch => {
-    const state = [...this.state];
-    console.print(state);
+    const { name, phone, email } = this.state;
+    const newContact = {
+      id: uuid(),
+      name,
+      email,
+      phone,
+    };
     dispatch({
       type: 'ADD_CONTACT',
-      payload: state,
+      payload: newContact,
     });
+    this.setState({ name: '', email: '', phone: '' });
   };
 
   render() {
@@ -45,7 +42,7 @@ export default class addContact extends Component {
                   <div className="form-group">
                     <label htmlFor="name">Name</label>
                     <input
-                      className="form-control form-control-lg"
+                      className="form-control "
                       type="text"
                       name="name"
                       value={name}
@@ -57,7 +54,7 @@ export default class addContact extends Component {
                   <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input
-                      className="form-control form-control-lg"
+                      className="form-control "
                       type="text"
                       name="email"
                       value={email}
@@ -69,7 +66,7 @@ export default class addContact extends Component {
                   <div className="form-group">
                     <label htmlFor="phone">Phone</label>
                     <input
-                      className="form-control form-control-lg"
+                      className="form-control "
                       type="text"
                       name="phone"
                       placeholder="Enter phone number..."
@@ -78,7 +75,7 @@ export default class addContact extends Component {
                       required
                     />
                   </div>
-                  <input className="btn btn-primary btn-block" type="submit" value="Add Contact" />
+                  <input className="btn btn-light btn-block" type="submit" value="Add Contact" />
                 </form>
               </div>
             </div>

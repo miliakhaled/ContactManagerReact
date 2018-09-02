@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 
 const Context = React.createContext();
 const reducer = (state, action) => {
@@ -9,7 +10,6 @@ const reducer = (state, action) => {
         contacts: state.contacts.filter(c => c.id !== action.payload),
       };
     case 'ADD_CONTACT': {
-      action.payload.id = state.contacts.length + 1;
       return {
         ...state,
         contacts: [...state.contacts, action.payload],
@@ -23,13 +23,13 @@ export class Provider extends Component {
   state = {
     contacts: [
       {
-        id: 1,
+        id: uuid(),
         name: 'Milia Khaled',
         email: ' miliakhaled@gmail.com',
         phone: ' 07777777777',
       },
       {
-        id: 2,
+        id: uuid(),
         name: 'Hamimed wassim',
         email: ' wassimhamimed@gmail.com',
         phone: ' 05555555555',
