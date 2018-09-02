@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import '../index.css';
+import { Consumer } from './Context';
 
 export default class Constact extends Component {
   state = {
@@ -23,6 +24,10 @@ export default class Constact extends Component {
     return ` fa fa-xs text-secondary  fa-sort-${arrowStyle}`;
   };
 
+  onDeleteClick = (id, dispatch) => {
+    dispatch({ type: 'DELETE_CONTACT', payload: id });
+  };
+
   render() {
     const { id, name, email, phone } = this.props.contact;
     const { showContact } = this.state;
@@ -31,7 +36,14 @@ export default class Constact extends Component {
         <h4>
           {name}
           <i className={this.formatArrow()} onClick={this.showInfo} />
-          <i className="fas fa-times-circle text-danger float-right" onClick={() => this.props.onDelete(id)} />
+          <Consumer>
+            {value => (
+              <i
+                className="fas fa-times-circle text-danger float-right"
+                onClick={this.onDeleteClick.bind(this, id, value.dispatch)}
+              />
+            )}
+          </Consumer>
         </h4>
         {showContact ? (
           <ul className="list-group animation">
