@@ -5,7 +5,7 @@ import { Consumer } from '../Context';
 
 export default class Constact extends Component {
   state = {
-    showContact: true,
+    showContact: false,
   };
 
   static propTypes = {
@@ -38,7 +38,7 @@ export default class Constact extends Component {
           <Consumer>
             {value => (
               <i
-                className="fas fa-times-circle text-danger float-right"
+                className="fas fa-times text-danger float-right"
                 onClick={this.onDeleteClick.bind(this, id, value.dispatch)}
               />
             )}
