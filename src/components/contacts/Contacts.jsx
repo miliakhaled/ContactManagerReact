@@ -7,7 +7,6 @@ export default class Contacts extends Component {
     return (
       <Consumer>
         {value => {
-          const { deleteContact } = value;
           const { contacts } = value;
           return (
             <React.Fragment>

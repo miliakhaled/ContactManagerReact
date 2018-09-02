@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 
 export default class addContact extends Component {
-  state = {
-    name: 'khaled',
-    email: 'email',
-    phone: 'phone',
+  static defaultProps = {
+    name: 'Milia Khaled',
+    email: 'miliakhlaed@gmail.com',
+    phone: '0792894215',
   };
 
-  onChange = e => this.setState({ [e.target.name]: e.target.value });
+  constructor(props) {
+    super(props);
+    this.nameInput = React.createRef();
+    this.phoneInput = React.createRef();
+    this.emailInput = React.createRef();
+  }
 
   onSubmit = e => {
     e.preventDefault();
+    const contact = {
+      name: this.nameInput.current.value,
+      email: this.emailInput.current.value,
+      phone: this.phoneInput.current.value,
+    };
+    console.log(contact);
   };
 
   render() {
-    const { name, email, phone } = this.state;
+    const { name, email, phone } = this.props;
     return (
       <div className="card mb-3">
         <div className="card-header">Add Contact</div>
@@ -25,11 +36,11 @@ export default class addContact extends Component {
               <input
                 className="form-control form-control-lg"
                 type="text"
-                name="name"
-                value={name}
+                name={name}
+                defaultValue={name}
                 placeholder="Enter Name..."
+                ref={this.nameInput}
                 required
-                onChange={this.onChange}
               />
             </div>
             <div className="form-group">
@@ -38,9 +49,9 @@ export default class addContact extends Component {
                 className="form-control form-control-lg"
                 type="text"
                 name="email"
-                value={email}
-                onChange={this.onChange}
+                defaultValue={email}
                 placeholder="Enter email address..."
+                ref={this.emailInput}
                 required
               />
             </div>
@@ -51,8 +62,8 @@ export default class addContact extends Component {
                 type="text"
                 name="phone"
                 placeholder="Enter phone number..."
-                value={phone}
-                onChange={this.onChange}
+                defaultValue={phone}
+                ref={this.phoneInput}
                 required
               />
             </div>
