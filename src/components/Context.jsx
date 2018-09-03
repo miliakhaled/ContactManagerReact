@@ -38,6 +38,16 @@ export class Provider extends Component {
     dispatch: action => this.setState(state => reducer(state, action)),
   };
 
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(json => {
+        const newContact = json.map(el => ({ id: el.id, name: el.name, email: el.email, phone: el.phone }));
+        console.log(newContact);
+        this.setState({ ...this.state, contacts: newContact });
+      });
+  }
+
   render() {
     return <Context.Provider value={this.state}>{this.props.children}</Context.Provider>;
   }

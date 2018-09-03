@@ -6,10 +6,10 @@ import Header from './components/layouts/Header';
 import { Provider } from './components/Context';
 import About from './components/pages/about';
 import Page404 from './components/pages/notfound';
+import Test from './components/pages/test';
 
 export default class App extends Component {
   render() {
-    const version = '0.1';
     return (
       <Provider>
         <Router>
@@ -20,6 +20,8 @@ export default class App extends Component {
                 <Route exact path="/" component={Contacts} />
                 <Route exact path="/about" component={About} />
                 <Route exact path="/contact/add" component={AddContact} />
+                <Route exact path="/test" component={Test} />
+
                 <Route component={Page404} />
               </Switch>
             </div>
