@@ -2,7 +2,7 @@
   "name": "crash_course",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://miliakhaled.github.io/reactcontactmanager",
+  "homepage": "https://miliakhaled.github.io/ContactManagerReact/",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.3.1",
     "axios": "^0.18.0",
@@ -10,6 +10,7 @@
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-prettier": "^2.6.2",
     "fontawesome": "^4.7.2",
+    "gh-pages": "^1.2.0",
     "prettier": "^1.14.2",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
