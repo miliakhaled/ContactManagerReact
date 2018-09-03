@@ -24,11 +24,13 @@ export default class Constact extends Component {
     return `p-1 fa fa-xs text-secondary  fa-sort-${arrowStyle}`;
   };
 
-  onDeleteClick = (id, dispatch) => {
-    axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`).then(res => {
+  onDeleteClick = async (id, dispatch) => {
+    try {
+      const res = await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
       dispatch({ type: 'DELETE_CONTACT', payload: id });
-      console.log(res);
-    });
+    } catch (error) {
+      dispatch({ type: 'DELETE_CONTACT', payload: id });
+    }
   };
 
   render() {
