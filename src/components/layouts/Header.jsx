@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const Header = ({ branding }) => (
-  <nav className="navbar navbar-expand navbar-dark bg-danger my-3 py-0">
+  <nav className="navbar navbar-expand navbar-dark bg-danger mb-3 py-0">
     <div className="container">
       <Link to="/" className="navbar-brand">
         {branding}
