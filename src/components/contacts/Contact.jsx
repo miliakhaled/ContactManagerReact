@@ -20,7 +20,7 @@ export default class Constact extends Component {
   formatArrow = () => {
     const { showContact } = this.state;
     const arrowStyle = showContact ? 'down' : 'up';
-    return ` fa fa-xs text-secondary  fa-sort-${arrowStyle}`;
+    return `p-1 fa fa-xs text-secondary  fa-sort-${arrowStyle}`;
   };
 
   onDeleteClick = (id, dispatch) => {
@@ -31,29 +31,34 @@ export default class Constact extends Component {
     const { id, name, email, phone } = this.props.contact;
     const { showContact } = this.state;
     return (
-      <div className="card card-body shadow mb-3 ">
-        <h4>
-          {name}
-          <i className={this.formatArrow()} onClick={this.showInfo} />
-          <Consumer>
-            {value => (
+      <Consumer>
+        {value => (
+          <div className="card card-body shadow mb-3 bg-light " onClick={this.showInfo}>
+            <h5 className="text-secondary">
+              {name}
+              <i className={this.formatArrow()} onClick={this.showInfo} />
+
               <i
                 className="fas fa-times text-danger float-right"
                 onClick={this.onDeleteClick.bind(this, id, value.dispatch)}
               />
-            )}
-          </Consumer>
-        </h4>
-        {showContact ? (
-          <ul className="list-group animation">
-            <li className="list-group-item">
-              email:
-              {email}
-            </li>
-            <li className="list-group-item">phone: {phone} </li>
-          </ul>
-        ) : null}
-      </div>
+              <i
+                className="fas fa-user-edit mr-3 text-secondary float-right"
+                onClick={this.onDeleteClick.bind(this, id, value.dispatch)}
+              />
+            </h5>
+            {showContact ? (
+              <ul className="list-group animation">
+                <li className="list-group-item">
+                  email:
+                  {email}
+                </li>
+                <li className="list-group-item">phone: {phone} </li>
+              </ul>
+            ) : null}
+          </div>
+        )}
+      </Consumer>
     );
   }
 }
