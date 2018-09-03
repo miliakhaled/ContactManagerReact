@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import '../index.css';
+import axios from 'axios';
 import { Consumer } from '../Context';
 
 export default class Constact extends Component {
@@ -24,7 +25,10 @@ export default class Constact extends Component {
   };
 
   onDeleteClick = (id, dispatch) => {
-    dispatch({ type: 'DELETE_CONTACT', payload: id });
+    axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`).then(res => {
+      dispatch({ type: 'DELETE_CONTACT', payload: id });
+      console.log(res);
+    });
   };
 
   render() {
