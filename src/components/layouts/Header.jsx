@@ -1,23 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const Header = ({ branding }) => (
   <nav className="navbar navbar-expand navbar-dark bg-danger my-3 py-0">
     <div className="container">
-      <a href="/" className="navbar-brand">
+      <Link to="/" className="navbar-brand">
         {branding}
-      </a>
+      </Link>
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
-          <a href="/" className="nav-link">
+          <Link to="/" className="nav-link">
+            <i className="fas fa-home fa-xs pr-1" />
             Home
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a href="/" className="nav-link">
+          <Link to="/contact/add" className="nav-link">
+            <i className="fas fa-plus fa-xs pr-1" />
             Add
-            <i className="fas fa-plus" />
-          </a>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/about" className="nav-link ">
+            <i className="fas fa-info fa-xs  pr-1" />
+            About
+          </Link>
         </li>
       </ul>
     </div>
