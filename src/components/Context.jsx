@@ -21,7 +21,8 @@ const reducer = (state, action) => {
         contacts: state.contacts.map(c => {
           console.log(action.payload);
           console.log(c);
-          if (c.id == action.payload.id) {
+
+          if (c.id === Number.parseInt(action.payload.id)) {
             return action.payload;
           }
           return c;
