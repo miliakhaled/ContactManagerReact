@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Switch, HashRouter as Router } from 'react-router-dom';
 import Contacts from './components/contacts/Contacts';
 import AddContact from './components/contacts/addContact';
 import ModifyContact from './components/contacts/modifyContact';
@@ -8,12 +8,12 @@ import { Provider } from './components/Context';
 import About from './components/pages/about';
 import Page404 from './components/pages/notfound';
 import Test from './components/pages/test';
-// basename={process.env.PUBLIC_URL}
+
 export default class App extends Component {
   render() {
     return (
       <Provider>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <div>
             <Header branding="Contact Manager" />
             <div className="container">
