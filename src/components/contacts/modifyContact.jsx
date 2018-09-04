@@ -11,14 +11,18 @@ export default class modifyContact extends Component {
   };
 
   componentDidMount() {
-    let contact = this.props.match.params.contact.split(',');
-    contact = {
-      id: contact[0],
-      name: contact[1],
-      email: contact[2],
-      phone: contact[3],
-    };
-    this.setState(contact);
+    /* let contact = this.props.match.params.contact.split(','); */
+    const { id } = this.props.match.params;
+
+    axios.get(`https://jsonplaceholder.typicode.com/users/${id}`).then(res => {
+      const contact = {
+        id: res.data.id,
+        name: res.data.name,
+        email: res.data.email,
+        phone: res.data.phone,
+      };
+      this.setState(contact);
+    });
   }
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
@@ -27,13 +31,15 @@ export default class modifyContact extends Component {
     e.preventDefault();
     // addContact(dispatch(state));
     // const { id, name, phone, email } = this.state;
+
     const newContact = { ...this.state };
-    // const res = await axios.post('https://jsonplaceholder.typicode.com/users', newContact);
-    dispatch({
-      type: 'MODIFY_CONTACT',
-      payload: newContact,
+    axios.put(`https://jsonplaceholder.typicode.com/users/${this.state.id}`, newContact).then(res => {
+      dispatch({
+        type: 'MODIFY_CONTACT',
+        payload: res.data,
+      });
     });
-    console.log(newContact.id);
+    // const res = await axios.post('https://jsonplaceholder.typicode.com/users', newContact);
 
     this.props.history.push('/'); // redirecting to '/'
   };

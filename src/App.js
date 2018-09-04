@@ -22,7 +22,7 @@ export default class App extends Component {
                 <Route exact path="/about" component={About} />
                 <Route exact path="/contact/add" component={AddContact} />
                 <Route exact path="/test" component={Test} />
-                <Route exact path="/contact/modify/:contact" component={ModifyContact} />
+                <Route exact path="/contact/modify/:id" component={ModifyContact} />
 
                 <Route component={Page404} />
               </Switch>

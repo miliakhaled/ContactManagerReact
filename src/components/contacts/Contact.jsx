@@ -53,10 +53,7 @@ export default class Constact extends Component {
                 className="fas fa-times text-danger float-right"
                 onClick={this.onDeleteClick.bind(this, id, value.dispatch)}
               />
-              <Link
-                to={`/contact/modify/${id},${name},${email},${phone}`}
-                className="fas fa-user-edit mr-3 text-secondary float-right"
-              />
+              <Link to={`/contact/modify/${id}`} className="fas fa-user-edit mr-3 text-secondary float-right" />
             </h5>
             {showContact ? (
               <ul className="list-group animation">
