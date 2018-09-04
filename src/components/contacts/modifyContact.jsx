@@ -10,24 +10,7 @@ export default class modifyContact extends Component {
     phone: '',
   };
 
-  // onChange = e => this.setState({ [e.target.name]: e.target.value });
-
-  onSubmit = async (e, dispatch, newContact) => {
-    e.preventDefault();
-    console.log(newContact);
-    // addContact(dispatch(state));
-    const { name, phone, email } = this.state;
-
-    // const res = await axios.post('https://jsonplaceholder.typicode.com/users', newContact);
-    dispatch({
-      type: 'MODIFY_CONTACT',
-      payload: newContact,
-    });
-    this.props.history.push('/'); // redirecting to '/'
-  };
-
-  render() {
-    // this parameters are recuperated from Link component as a string
+  componentDidMount() {
     let contact = this.props.match.params.contact.split(',');
     contact = {
       id: contact[0],
@@ -35,8 +18,31 @@ export default class modifyContact extends Component {
       email: contact[2],
       phone: contact[3],
     };
+    this.setState(contact);
+  }
+
+  onChange = e => this.setState({ [e.target.name]: e.target.value });
+
+  onSubmit = async (e, dispatch) => {
+    e.preventDefault();
+    // addContact(dispatch(state));
+    // const { id, name, phone, email } = this.state;
+    const newContact = { ...this.state };
+    // const res = await axios.post('https://jsonplaceholder.typicode.com/users', newContact);
+    dispatch({
+      type: 'MODIFY_CONTACT',
+      payload: newContact,
+    });
+    console.log(newContact.id);
+
+    this.props.history.push('/'); // redirecting to '/'
+  };
+
+  render() {
+    // this parameters are recuperated from Link component as a string
+
     // contact = contact.splite(':');
-    const { id, name, email, phone } = contact;
+    const { id, name, email, phone } = this.state;
 
     return (
       <Consumer>
@@ -47,10 +53,16 @@ export default class modifyContact extends Component {
             <div className="card mb-3">
               <div className="card-header">Modify Contact</div>
               <div className="card-body">
-                <form onSubmit={e => this.onSubmit(e, dispatch, contact)}>
-                  <InputTextGroup label="name" value={name} placeholder="Enter Name..." />
-                  <InputTextGroup label="email" type="email" value={email} placeholder="Enter Email..." />
-                  <InputTextGroup label="phone" value={phone} placeholder="Enter Phone..." />
+                <form onSubmit={e => this.onSubmit(e, dispatch)}>
+                  <InputTextGroup label="name" value={name} placeholder="Enter Name..." onChange={this.onChange} />
+                  <InputTextGroup
+                    label="email"
+                    type="email"
+                    value={email}
+                    placeholder="Enter Email..."
+                    onChange={this.onChange}
+                  />
+                  <InputTextGroup label="phone" value={phone} placeholder="Enter Phone..." onChange={this.onChange} />
                   <input className="btn btn-light btn-block" type="submit" value="Update contact" />
                 </form>
               </div>

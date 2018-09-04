@@ -19,7 +19,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         contacts: state.contacts.map(c => {
-          if (c.id === action.payload.id) return action.payload;
+          console.log(action.payload);
+          console.log(c);
+          if (c.id == action.payload.id) {
+            return action.payload;
+          }
           return c;
         }),
       };
