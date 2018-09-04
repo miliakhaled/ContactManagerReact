@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 // import '../index.css';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { Consumer } from '../Context';
 
 export default class Constact extends Component {
@@ -33,6 +34,10 @@ export default class Constact extends Component {
     }
   };
 
+  redirect = () => {
+    this.props.history.push('/');
+  };
+
   render() {
     const { id, name, email, phone } = this.props.contact;
     const { showContact } = this.state;
@@ -48,9 +53,9 @@ export default class Constact extends Component {
                 className="fas fa-times text-danger float-right"
                 onClick={this.onDeleteClick.bind(this, id, value.dispatch)}
               />
-              <i
+              <Link
+                to={`/contact/modify/${id},${name},${email},${phone}`}
                 className="fas fa-user-edit mr-3 text-secondary float-right"
-                onClick={this.onDeleteClick.bind(this, id, value.dispatch)}
               />
             </h5>
             {showContact ? (

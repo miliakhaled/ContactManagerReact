@@ -9,7 +9,7 @@ const inputTextGroup = ({ label, value, onChange, placeholder, type }) => (
         className="form-control "
         type={type}
         name={label}
-        value={value}
+        defaultValue={value}
         placeholder={placeholder}
         required
         onChange={onChange}
